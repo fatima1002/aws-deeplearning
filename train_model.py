@@ -146,7 +146,7 @@ def net():
     # then add fully connected layer
     num_features=model.fc.in_features ##check how many features present in output of the model
     model.fc = nn.Sequential(
-                nn.Linear(num_features, 5)) 
+                nn.Linear(num_features, 133)) 
     return model
 
 
