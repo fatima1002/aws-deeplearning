@@ -11,8 +11,8 @@ The project has been carried out with the following:
 The following provides more detail:
 
 1. Training jobs:
-    1. Screenshot of hyperparameter training job:
-    2. Metrics during training 
+    1. Screenshot of hyperparameter training job: Please view images/training_proof_hpo1.png,training_proof_hpo2.png, training_proof_hpo3.png
+    2. Metrics during training:
     
     1. Screenshot of best estimator training job with profiler and debugger:
     2. Metrics during training:
