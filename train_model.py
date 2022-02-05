@@ -112,7 +112,7 @@ def train(model, train_loader,
                             running_corrects,
                             running_samples,
                             100.0*accuracy,
-                            time.asctime() # for measuring time for testing, remove for students and in the formatting
+                            time.asctime() 
                         )
                     )
                 
@@ -130,6 +130,9 @@ def train(model, train_loader,
                     loss_counter+=1
 
         if loss_counter==1:
+            break
+            
+        if epoch==0:
             break
     return model
 
@@ -216,7 +219,7 @@ def main(args):
     '''
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.fc.parameters(), lr=args.lr)
-    hook.register_loss(criterion) #this correct?
+    hook.register_loss(criterion) 
     
     '''
     TODO: Call the train function to start training your model
