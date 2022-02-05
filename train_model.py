@@ -52,7 +52,7 @@ def test(model, test_loader,criterion, device, hook):
 
     total_loss = running_loss / len(test_loader.dataset)
     total_acc = running_corrects/ len(test_loader.dataset)
-    print(f"Testing Accuracy: {100*total_acc}, average test loss: {total_loss}")
+    print(f"Testing Accuracy: {total_acc}, average test loss: {total_loss}")
 
 def train(model, train_loader,
          validation_loader, criterion, 
@@ -71,12 +71,12 @@ def train(model, train_loader,
     # =================================================#
     # 2. Set the SMDebug hook for the training phase. #
     # =================================================#
-    hook.set_mode(smd.modes.TRAIN)
-    hook.register_loss(criterion)  
+    hook.set_mode(smd.modes.TRAIN) #set debugging hook
+    # hook.register_loss(criterion) 
 
     for epoch in range(epochs):
         for phase in ['train', 'valid']:
-            print(f"Epoch {epoch}, Phase {phase}")
+            logger.info(f"Epoch {epoch}, Phase {phase}")
             if phase=='train':
                 hook.set_mode(modes.TRAIN)
                 model.train()
@@ -216,7 +216,7 @@ def main(args):
     '''
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.fc.parameters(), lr=args.lr)
-    hook.register_loss(criterion)
+    hook.register_loss(criterion) #this correct?
     
     '''
     TODO: Call the train function to start training your model
