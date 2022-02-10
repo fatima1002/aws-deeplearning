@@ -52,7 +52,7 @@ From debugger we can view the cross entropy loss:
 This shows CPU utiisation from the profiler report. The full report is included in the repository. It shows good CPU utilisation for the training as GPU was not available. 
 ![image](images/profiler_chart.png)
 
-The profiler report was saved in S3, please view [this file] to view the report.
+The profiler report was saved in S3, please view [here](ProfilerReport/profiler-output/profiler-report.html) to view the report.
 
 ## Model Deployment
 The model has been deploed to an endpoint , the instance that it is running on is `ml.m5.large` which is cheap and has sufficient compute power for testing purposes. 
@@ -64,3 +64,5 @@ Here is an image of the deployed endpoint
 
 
 
+
+Thank you for reading . 
