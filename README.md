@@ -27,9 +27,9 @@ Upload the data to an S3 bucket through the AWS Gateway so that SageMaker has ac
 Resnet18 pretrained model was chosen with fully connected layers to classify the breeds of dogs. This model is not as deep as other ResNet models but still able to classify up to 1000 images. We believe it would train faster and provide good results for our 133 classsificatino problem.
 
 Furthermore, we optimised the parameters on:
-learning rate: a continuous range from 0.001 to 0.1.
-batch size : choosing from 64,128,256 , 512
-epochs: an integer range from 2,3,4
+- learning rate: a continuous range from 0.001 to 0.1
+- batch size : choosing from 64,128,256 , 512
+- epochs: an integer range from 2,3,4
 
 
 This shows the hyperparameter job completed.
