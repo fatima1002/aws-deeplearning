@@ -13,13 +13,14 @@ import requests
 import numpy as np
 import torch
 from six import BytesIO
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.StreamHandler(sys.stdout))
+JSON_CONTENT_TYPE = 'application/json'
+JPEG_CONTENT_TYPE = 'image/jpeg'
 
 # reference
 # https://samuelabiodun.medium.com/how-to-deploy-a-pytorch-model-on-sagemaker-aa9a38a277b6
-
-
-JSON_CONTENT_TYPE = 'application/json'
-JPEG_CONTENT_TYPE = 'image/jpeg'
 
 def model_fn(model_dir):
     logger.info('Loading the model.')
@@ -31,17 +32,15 @@ def model_fn(model_dir):
     num_features=model.fc.in_features
     model.fc = nn.Sequential(
                 nn.Linear(num_features, 133))
-​
     with open(os.path.join(model_dir, "dogmodel_profdebug.pth"), "rb") as f:
         model.load_state_dict(torch.load(f))
         # checkpoint = torch.load(f , map_location =device)
         # model.load_state_dict(checkpoint)
     model.to(device).eval()
-    model.load_state_dict(torch.load(f))
     logger.info('Done loading model')
     return model
 
-def input_fn(request_body, request_content_type):
+def input_fn(request_body, content_type):
     logger.info('Deserializing the input data.')
     if content_type == JPEG_CONTENT_TYPE: 
         return Image.open(io.BytesIO(request_body))
@@ -53,8 +52,6 @@ def input_fn(request_body, request_content_type):
         img_content = requests.get(url).content
         return Image.open(io.BytesIO(img_content))
 
-import torch
-import numpy as np
 
 def predict_fn(input_data, model):
     testing_transform = transforms.Compose([
@@ -63,7 +60,9 @@ def predict_fn(input_data, model):
     transforms.Normalize(mean=[0.485, 0.456, 0.406],
                          std=[0.229, 0.224, 0.225])])
 
-    input_object=testing_transform(input_object)
+    input_object=testing_transform(input_data)
+#   convert to 4 dim
+    input_object = input_object.unsqueeze(dim=0)
     
     model.eval()
     with torch.no_grad():
