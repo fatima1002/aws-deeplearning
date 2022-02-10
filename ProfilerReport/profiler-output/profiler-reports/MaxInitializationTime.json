@@ -1,1 +1,1 @@
-{"RuleTriggered": 0, "Violations": 0, "Details": {"step_num": {"first": 1642978641131612, "last": 1642980777781827}, "job_start": 1642978491.184892, "job_end": 1642980779.685383}, "Datapoints": 213, "RuleParameters": "threshold:20"}
+{"RuleTriggered": 0, "Violations": 0, "Details": {"step_num": {"first": 1644087690825775, "last": 1644088791350570}, "job_start": 1644087554.956492, "job_end": 1644088799.923146}, "Datapoints": 80, "RuleParameters": "threshold:20"}
